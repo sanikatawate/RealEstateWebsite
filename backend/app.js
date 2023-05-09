@@ -14,31 +14,31 @@ const uri = 'mongodb+srv://sanikatawate30:sanika30@cluster0.w7wpmz8.mongodb.net/
 
 app.use(express.json());
 app.use(cors({origin: true}));
-// app.get("/", (req, res) => {
-//   res.send("Hello World");
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
+// app.get('/list', async (req, res) => {
+//   try {
+//     const collection = mongoose.connection.client.db('estate').collection('list');
+//     const users = await collection.find().toArray();
+//     res.send(users);
+//   } catch (error) {
+//     console.log('Error retrieving users', error);
+//     res.status(500).send('Internal server error');
+//   }
 // });
 
-app.get('/list', async (req, res) => {
-  try {
-    const collection = mongoose.connection.client.db('estate').collection('list');
-    const users = await collection.find().toArray();
-    res.send(users);
-  } catch (error) {
-    console.log('Error retrieving users', error);
-    res.status(500).send('Internal server error');
-  }
-});
-
-app.get('/location', async (req, res) => {
-  try {
-    const collection = mongoose.connection.client.db('estate').collection('location');
-    const users = await collection.find().toArray();
-    res.send(users);
-  } catch (error) {
-    console.log('Error retrieving users', error);
-    res.status(500).send('Internal server error');
-  }
-});
+// app.get('/location', async (req, res) => {
+//   try {
+//     const collection = mongoose.connection.client.db('estate').collection('location');
+//     const users = await collection.find().toArray();
+//     res.send(users);
+//   } catch (error) {
+//     console.log('Error retrieving users', error);
+//     res.status(500).send('Internal server error');
+//   }
+// });
 
 app.post("/signup", async (req, res) => {
   console.log(req.body);
