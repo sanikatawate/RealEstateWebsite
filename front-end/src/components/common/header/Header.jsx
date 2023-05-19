@@ -21,15 +21,8 @@ const Header = ()=>{
             </ul>
           </div>
           <div className='button flex'>
-            
-            <button className='btn' style={{marginRight:'20px', marginLeft:'20px'}}> 
-              <Link to="/su" style={{ width: "75px", height: "36px", margin:'0'}}>SignUp</Link>
-            </button>
-
-            <button className='btn'> 
-              <Link to="/login" style={{ width: "75px", height: "36px",margin:'0'}}>Login</Link>
-            </button>
-            
+            <Link to="/signup" role="button" className="signUpButton">SignUp</Link>
+            <Link to="/login" role="button" className="loginButton">Login</Link>
           </div>
 
           <div className='toggle'>

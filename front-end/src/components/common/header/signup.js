@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../contact/contact.css";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Signup = () => {
   const [temp, setTemp] = useState({
@@ -9,6 +9,7 @@ const Signup = () => {
     password: "",
     cnfpassword: ""
   });
+  let navigate = useNavigate();
   // const [temp,setTemp] = useState("")
 
   const handleChange = (e) => {
@@ -28,6 +29,7 @@ const Signup = () => {
     });
     let data = await response.json()
     console.log(data);
+    navigate('/')
   };
   return (
     <>

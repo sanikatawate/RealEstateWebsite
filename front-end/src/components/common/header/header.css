@@ -34,6 +34,22 @@ header h4 {
 header .toggle {
   display: none;
 }
+
+.signUpButton, .loginButton{
+  color: black;
+  width: 90px;
+  height: 50px;
+  margin:0 10px;
+  text-align: center;
+  border-radius: 5px;
+  padding-top: 14px;
+  background: #27ae60;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 768px) {
   header {
     padding: 0;
@@ -65,3 +81,4 @@ header .toggle {
     color: #fff;
   }
 }
+

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../contact/contact.css";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Login = () => {
   const [temp, setTemp] = useState({
@@ -8,6 +8,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  let navigate = useNavigate();
   // const [temp,setTemp] = useState("")
 
   const handleChange = (e) => {
@@ -26,6 +27,12 @@ const Login = () => {
     });
     let data = await response.json()
     console.log(data);
+    if (data.success) {
+      navigate('/');
+    }
+    else{
+      alert("Invalid Credentials");
+    }
   };
   return (
     <>

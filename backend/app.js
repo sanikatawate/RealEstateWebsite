@@ -6,7 +6,7 @@ const User = require("./schema.js");
 
 const app = express();
 
-const uri = 'mongodb+srv://sanikatawate30:sanika30@cluster0.w7wpmz8.mongodb.net/estate?retryWrites=true&w=majority';
+const uri = uri
 
 (async () => {
   await mongoose.connect(uri);
@@ -50,13 +50,16 @@ app.post("/login", async (req, res) => {
   try {
     console.log(req.body);
     const userInstance = await User.findOne({email: req.body.email});
-    console.log("fakhfhka",userInstance.password);
+    console.log(userInstance.password);
     if (userInstance.password === req.body.password) {
       return res
         .status(200)
         .json({ success: true, message: "Login Successful" });
     }
-    res.status(401).json({ success: false, message: "Login Failed" });
+    else{
+      res.status(401).json({ success: false, message: "Login Failed" });
+    }
+    
   } catch (error) {
     res.send(error);
   }
