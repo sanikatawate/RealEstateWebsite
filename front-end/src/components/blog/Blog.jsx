@@ -10,7 +10,7 @@ const Blog = () => {
       <section className='blog-out mb'>
         <Back name='Listings' title='Properties Grid' cover={img} />
         <div className='container recent'>
-          <RecentCard />
+        <RecentCard />
         </div>
       </section>
     </>

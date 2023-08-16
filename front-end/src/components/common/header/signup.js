@@ -29,7 +29,13 @@ const Signup = () => {
     });
     let data = await response.json()
     console.log(data);
-    navigate('/')
+    if(data.success){
+      localStorage.setItem('token', data.authtoken)
+      navigate('/')
+    }
+    else{
+      alert("Invalid Credentials");
+    }
   };
   return (
     <>
@@ -43,7 +49,8 @@ const Signup = () => {
                 placeholder="Username"
                 id="username"
                 onChange={handleChange}
-                value={temp.name}
+                value={temp.username}
+                required
               />
             </div>
             <div>
@@ -53,6 +60,8 @@ const Signup = () => {
                 id="email"
                 onChange={handleChange}
                 value={temp.email}
+                minLength={6}
+                required
               />
             </div>
             <div>
@@ -62,6 +71,8 @@ const Signup = () => {
                 id="password"
                 onChange={handleChange}
                 value={temp.password}
+                minLength={6}
+                required
               />
             </div>
             <div>
@@ -71,6 +82,8 @@ const Signup = () => {
                 id="cnfpassword"
                 onChange={handleChange}
                 value={temp.cnfpassword}
+                minLength={6}
+                required
               />
             </div>
             <button onClick={handleSubmit}>Create Account</button>

@@ -4,10 +4,11 @@ import { Link, useNavigate } from "react-router-dom"
 
 const Login = () => {
   const [temp, setTemp] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
+
   let navigate = useNavigate();
   // const [temp,setTemp] = useState("")
 
@@ -28,12 +29,14 @@ const Login = () => {
     let data = await response.json()
     console.log(data);
     if (data.success) {
+      localStorage.setItem('token', data.authtoken);
       navigate('/');
     }
     else{
       alert("Invalid Credentials");
     }
   };
+
   return (
     <>
       <section className="contact mb">
@@ -44,9 +47,9 @@ const Login = () => {
               <input
                 type="text"
                 placeholder="Username"
-                id="name"
+                id="username"
                 onChange={handleChange}
-                value={temp.name}
+                value={temp.username}
               />
             </div>
             <div>

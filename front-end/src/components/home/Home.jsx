@@ -10,10 +10,9 @@ const Home = () => {
   return (
     <>
       <Hero />
-      <Featured />
-      <Recent />
-      
-      <Location />
+      {localStorage.getItem('token')&&<Featured />}
+      {localStorage.getItem('token')&&<Recent />}
+      {localStorage.getItem('token')&&<Location />}
       
       {/* <Price /> */}
     </>

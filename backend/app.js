@@ -1,22 +1,27 @@
 const express = require("express");
 const cors = require("cors");
-const mongoose = require("mongoose");
-
-const User = require("./schema.js");
+const connectDB = require("./db/connect.js");
+const authRoute = require("./routes/auth.js")
 
 const app = express();
+const port = 1337;
 
-const uri = uri
+connectDB()
 
-(async () => {
-  await mongoose.connect(uri);
-})();
-
-app.use(express.json());
-app.use(cors({origin: true}));
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
+app.use(express.json());
+app.use('/', authRoute);
+app.use(cors({origin: true}));
 
 // app.get('/list', async (req, res) => {
 //   try {
@@ -40,33 +45,7 @@ app.get("/", (req, res) => {
 //   }
 // });
 
-app.post("/signup", async (req, res) => {
-  console.log(req.body);
-  const userInstance = await User.create(req.body);
-  res.status(200).json(userInstance);
-});
 
-app.post("/login", async (req, res) => {
-  try {
-    console.log(req.body);
-    const userInstance = await User.findOne({email: req.body.email});
-    console.log(userInstance.password);
-    if (userInstance.password === req.body.password) {
-      return res
-        .status(200)
-        .json({ success: true, message: "Login Successful" });
-    }
-    else{
-      res.status(401).json({ success: false, message: "Login Failed" });
-    }
-    
-  } catch (error) {
-    res.send(error);
-  }
-});
-
-mongoose.connection.on("open", () => {
-  app.listen(1337, () => {
+  app.listen(port, () => {
     console.log("Server is up on port 1337");
   });
-});
